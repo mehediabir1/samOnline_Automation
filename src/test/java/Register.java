@@ -1,8 +1,13 @@
+import org.apache.commons.collections4.Get;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.io.IOException;
 
 public class Register extends Base_Util{
@@ -14,20 +19,18 @@ public class Register extends Base_Util{
     static String Phone;
     static int age;
     static String Ins;
-    static WebDriver driver;
 
+    //MainMethod
     public static void main(String[] args) throws InterruptedException, IOException {
-        ChromeSetup();
+
+        ChromeOpen();
+        GetUrl("https://sam.rultest2.com/account/");
         Register_001();
     }
-    public static void ChromeSetup(){
-        System.setProperty("webdriver.chrome.driver","./src/main/resources/chromedriver.exe");
-        driver=new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://sam.rultest2.com/account/");
-    }
 
-    public static void Register_001() throws IOException {
+
+    //Register
+    public static void Register_001() throws IOException, InterruptedException {
 
         XSSFWorkbook workbook = new XSSFWorkbook(ExcelPath);
         XSSFSheet sheet = workbook.getSheet("Sheet1");
@@ -35,25 +38,13 @@ public class Register extends Base_Util{
         try
         {
             Username = sheet.getRow(0).getCell(0).getStringCellValue();
-            Thread.sleep(2000);
-
             email = sheet.getRow(0).getCell(1).getStringCellValue();
-            Thread.sleep(2000);
-
             Pass = (int) sheet.getRow(0).getCell(2).getNumericCellValue();
-            Thread.sleep(2000);
-
             Name = sheet.getRow(0).getCell(3).getStringCellValue();
-            Thread.sleep(2000);
-
             Phone = sheet.getRow(0).getCell(4).getStringCellValue();
-            Thread.sleep(2000);
-
             age = (int) sheet.getRow(0).getCell(5).getNumericCellValue();
-            Thread.sleep(2000);
-
             Ins = sheet.getRow(0).getCell(6).getStringCellValue();
-            Thread.sleep(2000);
+
         }
         catch (Exception ex){
             System.out.println("not working");
@@ -86,8 +77,12 @@ public class Register extends Base_Util{
             //RegisterButton
             driver.findElement(By.xpath("(//span[contains(.,'Register')])[2]")).click();
 
-    //        Thread.sleep(3000);
-    //        boolean b = driver.findElements(By.xpath("//a[@href='https://sam.rultest2.com/wp-login.php?action=logout&redirect_to=https%3A%2F%2Fsam.rultest2.com&_wpnonce=5d6ea4068e']")).isEmpty();
-    //        System.out.println(b);
+        WebDriverWait wait = new WebDriverWait()
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href,'wpnonce=418601183e')]")));
+
+        Boolean isRegistered = driver.findElements(By.xpath("")).size() > 0;
+        System.out.println(isRegistered);
+
+
     }
 }

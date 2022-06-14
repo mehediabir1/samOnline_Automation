@@ -1,6 +1,6 @@
-import org.omg.CORBA.PUBLIC_MEMBER;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.IOException;
@@ -17,7 +17,9 @@ public class Base_Util {
     }
 
     public static void GetUrl(String URL){ driver.get(URL); }
-    public static void FindByXpath(String xpath){ driver.findElement(By.xpath(xpath)); }
+    public static WebElement FindByXpath(String xpath){ driver.findElement(By.xpath(xpath));
+        return null;
+    }
     public static void FindById(String id){ driver.findElement(By.xpath(id)); }
     public static void FindByClass(String className){ driver.findElement(By.xpath(className)); }
     public static void FindByCss(String cssSelector){ driver.findElement(By.xpath(cssSelector)); }
