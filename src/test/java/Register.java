@@ -3,8 +3,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import java.io.IOException;
 
-public class Register {
+public class Register extends Base_Util{
     static String ExcelPath = "C:\\Users\\User\\Desktop\\Data.xlsx";
     static String Username;
     static String email;
@@ -15,7 +16,7 @@ public class Register {
     static String Ins;
     static WebDriver driver;
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         ChromeSetup();
         Register_001();
     }
@@ -26,7 +27,7 @@ public class Register {
         driver.get("https://sam.rultest2.com/account/");
     }
 
-    public static void Register_001() throws InterruptedException {
+    public static void Register_001() throws IOException {
 
         XSSFWorkbook workbook = new XSSFWorkbook(ExcelPath);
         XSSFSheet sheet = workbook.getSheet("Sheet1");
@@ -35,22 +36,30 @@ public class Register {
         {
             Username = sheet.getRow(0).getCell(0).getStringCellValue();
             Thread.sleep(2000);
+
             email = sheet.getRow(0).getCell(1).getStringCellValue();
             Thread.sleep(2000);
+
             Pass = (int) sheet.getRow(0).getCell(2).getNumericCellValue();
             Thread.sleep(2000);
+
             Name = sheet.getRow(0).getCell(3).getStringCellValue();
             Thread.sleep(2000);
+
             Phone = sheet.getRow(0).getCell(4).getStringCellValue();
             Thread.sleep(2000);
+
             age = (int) sheet.getRow(0).getCell(5).getNumericCellValue();
             Thread.sleep(2000);
+
             Ins = sheet.getRow(0).getCell(6).getStringCellValue();
             Thread.sleep(2000);
         }
         catch (Exception ex){
             System.out.println("not working");
         }
+            workbook.close();
+
             String Pass2 = String.valueOf(Pass);
             String Age2 = String.valueOf(age);
 
