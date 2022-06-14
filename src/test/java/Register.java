@@ -78,17 +78,25 @@ public class Register extends Base_Util{
             //RegisterButton
             driver.findElement(By.xpath("(//span[contains(.,'Register')])[2]")).click();
 
+            //Assertion
+            Thread.sleep(5000);
+            String Actual = driver.findElement(By.xpath("//*[@id=\"header\"]/div[1]/div/div/div[2]/div/a[2]")).getText();
 
-            String Actual = driver.findElement(By.xpath("//*[@id=\"header\"]/div[1]/div/div/div[2]/div/a[1]")).getText();
-        System.out.println(Actual);
+            if (Actual.equals("Log out"))
+            {
+                System.out.println("Registered Passed");
 
-            if (Actual.equals(Username)){
-                System.out.println("Passed");
+                //Logout
+                driver.findElement(By.xpath("//*[@id=\"header\"]/div[1]/div/div/div[2]/div/a[2]")).click();
             }
-            else{
-                System.out.println("Failed");
+            else
+            {
+                System.out.println("Registration Failed");
             }
 
+    }
 
+    public static void Login(){
+            GetUrl("https://sam.rultest2.com/account/");
     }
 }
