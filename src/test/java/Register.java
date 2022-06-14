@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.apache.commons.collections4.Get;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -54,7 +55,7 @@ public class Register extends Base_Util{
             String Pass2 = String.valueOf(Pass);
             String Age2 = String.valueOf(age);
 
-            driver.findElement(By.xpath("(//input[contains(@type,'text')])[3]")).sendKeys(Username);
+                driver.findElement(By.xpath("(//input[contains(@type,'text')])[3]")).sendKeys(Username);
             driver.findElement(By.xpath("//input[contains(@type,'email')]")).sendKeys(email);
             driver.findElement(By.xpath("(//input[contains(@type,'password')])[2]")).sendKeys(Pass2);
             driver.findElement(By.xpath("//input[contains(@name,'password_re')]")).sendKeys(Pass2);
@@ -77,11 +78,16 @@ public class Register extends Base_Util{
             //RegisterButton
             driver.findElement(By.xpath("(//span[contains(.,'Register')])[2]")).click();
 
-        WebDriverWait wait = new WebDriverWait()
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href,'wpnonce=418601183e')]")));
 
-        Boolean isRegistered = driver.findElements(By.xpath("")).size() > 0;
-        System.out.println(isRegistered);
+            String Actual = driver.findElement(By.xpath("//*[@id=\"header\"]/div[1]/div/div/div[2]/div/a[1]")).getText();
+        System.out.println(Actual);
+
+            if (Actual.equals(Username)){
+                System.out.println("Passed");
+            }
+            else{
+                System.out.println("Failed");
+            }
 
 
     }
