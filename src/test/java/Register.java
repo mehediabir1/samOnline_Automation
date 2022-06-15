@@ -1,13 +1,6 @@
-import org.junit.Assert;
-import org.apache.commons.collections4.Get;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 
@@ -21,18 +14,19 @@ public class Register extends Base_Util{
     static int age;
     static String Ins;
 
+
+
     //MainMethod
     public static void main(String[] args) throws InterruptedException, IOException {
 
         ChromeOpen();
-        GetUrl("https://sam.rultest2.com/account/");
-        Register_001();
+        //GetUrl("https://sam.rultest2.com/account/");
+        DataCollector();
+        //Register_001();
+        Login(Username);
     }
 
-
-    //Register
-    public static void Register_001() throws IOException, InterruptedException {
-
+    public static void DataCollector() throws IOException {
         XSSFWorkbook workbook = new XSSFWorkbook(ExcelPath);
         XSSFSheet sheet = workbook.getSheet("Sheet1");
 
@@ -48,14 +42,21 @@ public class Register extends Base_Util{
 
         }
         catch (Exception ex){
-            System.out.println("not working");
+            System.out.println("Data Collection : FAILED!");
         }
-            workbook.close();
+        workbook.close();
 
-            String Pass2 = String.valueOf(Pass);
-            String Age2 = String.valueOf(age);
+        String Pass2 = String.valueOf(Pass);
+        String Age2 = String.valueOf(age);
+        Login(Pass2);
+    }
 
-                driver.findElement(By.xpath("(//input[contains(@type,'text')])[3]")).sendKeys(Username);
+
+
+    //Register
+    public static void Register_001(String Pass2) throws IOException, InterruptedException {
+
+            driver.findElement(By.xpath("(//input[contains(@type,'text')])[3]")).sendKeys(Username);
             driver.findElement(By.xpath("//input[contains(@type,'email')]")).sendKeys(email);
             driver.findElement(By.xpath("(//input[contains(@type,'password')])[2]")).sendKeys(Pass2);
             driver.findElement(By.xpath("//input[contains(@name,'password_re')]")).sendKeys(Pass2);
@@ -96,7 +97,11 @@ public class Register extends Base_Util{
 
     }
 
-    public static void Login(){
+    public static void Login(String Username){
             GetUrl("https://sam.rultest2.com/account/");
+
+            driver.findElement(By.xpath("//*[@id=\"stm-lms-login\"]/span/form/div/span[1]/div/input")).sendKeys(Username);
+            //driver.findElement(By.xpath("(//input[contains(@placeholder,'Enter password')])[1]")).sendKeys(Pass2);
+
     }
 }
