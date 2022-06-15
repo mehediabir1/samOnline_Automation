@@ -27,6 +27,7 @@ public class Register extends Base_Util{
     }
 
     public static void DataCollector() throws IOException {
+
         XSSFWorkbook workbook = new XSSFWorkbook(ExcelPath);
         XSSFSheet sheet = workbook.getSheet("Sheet1");
 
@@ -48,7 +49,6 @@ public class Register extends Base_Util{
 
         String Pass2 = String.valueOf(Pass);
         String Age2 = String.valueOf(age);
-        Login(Pass2);
     }
 
 
