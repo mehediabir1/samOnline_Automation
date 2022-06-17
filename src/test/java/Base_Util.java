@@ -16,6 +16,10 @@ public class Base_Util {
         driver.manage().window().maximize();
     }
 
+    public static void Sleep(int Time) throws InterruptedException {
+        Thread.sleep(Time);
+    }
+
     public static void GetUrl(String URL){ driver.get(URL); }
     public static WebElement FindByXpath(String xpath){ driver.findElement(By.xpath(xpath));
         return null;
