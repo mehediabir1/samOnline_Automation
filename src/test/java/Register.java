@@ -16,8 +16,8 @@ public class Register extends Base_Util {
         //Data Sending
         driver.findElement(By.xpath("(//input[contains(@type,'text')])[3]")).sendKeys(Username);
         driver.findElement(By.xpath("//input[contains(@type,'email')]")).sendKeys(email);
-        driver.findElement(By.xpath("(//input[contains(@type,'password')])[2]")).sendKeys(Pass2);
-        driver.findElement(By.xpath("//input[contains(@name,'password_re')]")).sendKeys(Pass2);
+        driver.findElement(By.xpath("(//input[contains(@type,'password')])[2]")).sendKeys(Pass);
+        driver.findElement(By.xpath("//input[contains(@name,'password_re')]")).sendKeys(Pass);
         driver.findElement(By.xpath("//input[contains(@name,'first_name')]")).sendKeys(Name);
         driver.findElement(By.xpath("//input[@placeholder='Enter your phone number']")).sendKeys(Phone);
 

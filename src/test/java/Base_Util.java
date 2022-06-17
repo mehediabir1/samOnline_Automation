@@ -10,12 +10,11 @@ public class Base_Util {
     static String ExcelPath = "C:\\Users\\User\\Desktop\\Data.xlsx";
     public static String Username;
     static String email;
-    public static int Pass;
+    static String Pass;
     static String Name;
     static String Phone;
     static int age;
     static String Ins;
-    static String Pass2;
     static String Age2;
     public static WebDriver driver;
     public static void main(String[] args) throws InterruptedException, IOException {
@@ -50,7 +49,7 @@ public class Base_Util {
         try {
             Username = sheet.getRow(0).getCell(0).getStringCellValue();
             email = sheet.getRow(0).getCell(1).getStringCellValue();
-            Pass = (int) sheet.getRow(0).getCell(2).getNumericCellValue();
+            Pass = sheet.getRow(0).getCell(2).getStringCellValue();
             Name = sheet.getRow(0).getCell(3).getStringCellValue();
             Phone = sheet.getRow(0).getCell(4).getStringCellValue();
             age = (int) sheet.getRow(0).getCell(5).getNumericCellValue();
@@ -60,7 +59,6 @@ public class Base_Util {
             System.out.println("Data Collection : FAILED!");
         }
         workbook.close();
-        Pass2 = String.valueOf(Pass);
         Age2 = String.valueOf(age);
     }
 
