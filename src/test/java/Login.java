@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Login extends Base_Util{
     public static void main(String[] args) throws IOException {
-        DataCollector();
+        Base_Util.DataCollector();
         Login_001();
     }
 
