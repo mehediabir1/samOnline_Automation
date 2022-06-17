@@ -6,7 +6,7 @@ public class Register extends Base_Util {
     public static void main(String[] args) throws InterruptedException, IOException {
         ChromeOpen();
         GetUrl("https://sam.rultest2.com/account/");
-        Base_Util.DataCollector();
+        DataCollector();
         Register_001();
     }
 
